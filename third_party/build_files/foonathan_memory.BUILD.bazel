@@ -1,0 +1,19 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["**"]),
+)
+
+cmake(
+    name = "foonathan_memory",
+    out_include_dir = "include/foonathan_memory",
+    cache_entries = {
+        "FOONATHAN_MEMORY_BUILD_EXAMPLES": "0",
+        "FOONATHAN_MEMORY_BUILD_TESTS": "0",
+        "FOONATHAN_MEMORY_BUILD_TOOLS": "0",
+    },
+    lib_source = ":srcs",
+    out_static_libs = ["libfoonathan_memory-0.7.2.a"],
+    visibility = ["//visibility:public"],
+)

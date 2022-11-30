@@ -1,0 +1,15 @@
+load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake")
+
+filegroup(
+    name = "srcs",
+    srcs = glob(["**"]),
+)
+
+cmake(
+    name = "fastcdr",
+    #alwayslink = 1,
+    out_include_dir = "include",
+    lib_source = ":srcs",
+    out_shared_libs = ["libfastcdr.so.1"],
+    visibility = ["//visibility:public"],
+)
